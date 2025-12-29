@@ -1,6 +1,9 @@
 
 
 #!/bin/bash
+set -e #Exit on error
+set -u #Exit on undefined Variable
+set -o pipefail #catch errors in pipes
 
 LOG_FILE="/c/Users/saide/devTraining/sample-log.txt"
 
@@ -38,10 +41,7 @@ fi
 
 echo "========================================="
 
-Cache-control
-Content-disposition
-Content-type
-Content-encoding
+
 
 
 
