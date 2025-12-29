@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saideep Reddy | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="portfolio-v2.css">
+</head>
+
+<body>
+
+<header class="site-header" id="top">
+    <div class="container">
+        <h1>Saideep Reddy</h1>
+        <p class="tagline">Java Full Stack Developer</p>
+
+        <nav aria-label="Primary navigation">
+            <ul class="nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <section id="about" class="card">
+        <h2>About Me</h2>
+
+        <figure class="profile">
+            <img src="Sai.jpg" alt="Portrait of Saideep Reddy">
+            <figcaption>Saideep Reddy</figcaption>
+        </figure>
+
+        <article>
+            <h3>Professional Summary</h3>
+            <p>
+                A dedicated Java Full Stack Developer fresher with hands-on experience
+                in Java, JDBC, Spring Boot, REST APIs, and front-end technologies.
+            </p>
+            <p>
+                Familiar with MySQL, Git, object-oriented programming concepts,
+                and the software development life cycle.
+            </p>
+        </article>
+    </section>
+
+    <section id="skills" class="card">
+        <h2>Technical Skills</h2>
+
+        <div class="skills-grid">
+            <section>
+                <h3>Backend</h3>
+                <ul>
+                    <li>Java</li>
+                    <li>SQL</li>
+                    <li>JDBC</li>
+                    <li>Spring Boot</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Frontend</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </section>
+        </div>
+    </section>
+
+    <section id="projects" class="card">
+        <h2>Projects</h2>
+
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3>Driver Drowsiness Detection System</h3>
+                <p>
+                    Machine-learning-based system that detects driver fatigue using
+                    facial feature analysis and real-time alerts.
+                </p>
+            </article>
+
+            <article class="project-card">
+                <h3>Student Management System</h3>
+                <p>
+                    Java-based application to manage student data using Java,
+                    SQL, JDBC, Spring Boot, HTML, CSS, and JavaScript.
+                </p>
+            </article>
+
+            <article class="project-card">
+                <h3>Library Management System</h3>
+                <p>
+                    System to manage books, members, issue and return operations,
+                    and fine calculations.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="card">
+        <h2>Get In Touch</h2>
+
+        <form action="/contact" method="post" class="contact-form">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject">
+                    <option value="">Select a topic</option>
+                    <option value="job">Job Opportunity</option>
+                    <option value="project">Project Collaboration</option>
+                    <option value="question">General Question</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Send Message</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+
+        <nav aria-label="Social links">
+            <ul class="social-links">
+                <li>
+                    <a href="https://github.com/SaideepReddy54"
+                       target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/kommepalli-saideep-reddy-38b59024b"
+                       target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Saideep Reddy. All rights reserved.</p>
+    <p><a href="#top">Back to Top</a></p>
+</footer>
+
+</body>
+</html>
