@@ -1,3 +1,7 @@
+#!/bin/bash
+set -e #Exit on error
+set -u #Exit on undefined Variable
+set -o pipefail #catch errors in pipes
 THRESHOLD=${1:-90}
 ALERT=0
 

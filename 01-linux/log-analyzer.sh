@@ -1,5 +1,4 @@
 
-
 #!/bin/bash
 set -e #Exit on error
 set -u #Exit on undefined Variable
