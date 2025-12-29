@@ -1,0 +1,31 @@
+git init – Creates a new Git repository in the current folder
+
+git add . – Adds all files to the staging area
+
+git commit -m "Initial commit" – Saves the staged files with a message
+
+git remote add origin <repository-url> – Connects local repo to GitHub repo
+
+git push -u origin main – Pushes main branch to GitHub and sets upstream
+
+git branch branch-name – Creates a new branch
+
+git checkout branch-name – Switches to the specified branch
+
+git checkout -b branch-name – Creates and switches to a new branch
+
+git add . – Stages changes in the current branch
+
+git commit -m "Added new feature" – Saves changes in the branch
+
+git push origin branch-name – Pushes the branch to GitHub
+
+git status – Shows current branch and file changes
+
+git diff main branch-name – Shows differences between main and branch-name
+
+git stash – Temporarily saves uncommitted changes
+
+git stash pop – Restores the last stashed changes
+
+git pull origin main – Fetches and merges latest changes from GitHub
