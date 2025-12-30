@@ -1,13 +1,13 @@
 # Review: 01-linux
 
 **Exercise:**  Exercise: Log File Analyzer Script
-**Review Date:** 2025-12-30 12:16
+**Review Date:** 2025-12-30 15:31
 
 ---
 
 ## Status: ✅ Submitted
 
-**Files submitted:** 15
+**Files submitted:** 6
 
 ### Required Files
 
@@ -17,77 +17,53 @@
 
 📄 **file-organizer.sh**
    Path: `01-linux/challenge-01/file-organizer.sh`
-   Lines: 38
+   Lines: 47
 
-    - ✅ Has shebang (`#!/bin/bash`)
+    - ❌ Missing shebang (`#!/bin/bash`)
     - ✅ Has error handling (`set -e`)
-    - ✅ Handles command-line arguments
-    - 💡 Consider adding more comments
+    - ⚠️ No argument handling detected
+    - ✅ Has comments (7 lines)
     - ✅ Variables are properly quoted
 
-   **Score: 4/5**
+   **Score: 3/5**
 
 📄 **process-moniter.sh**
    Path: `01-linux/challenge-02/process-moniter.sh`
-   Lines: 31
+   Lines: 37
 
     - ✅ Has shebang (`#!/bin/bash`)
     - ✅ Has error handling (`set -e`)
-    - ✅ Handles command-line arguments
-    - 💡 Consider adding more comments
+    - ⚠️ No argument handling detected
+    - ✅ Has comments (6 lines)
     - ✅ Variables are properly quoted
 
    **Score: 4/5**
 
 📄 **disk-alert.sh**
    Path: `01-linux/challenge-03/disk-alert.sh`
-   Lines: 23
+   Lines: 34
 
     - ✅ Has shebang (`#!/bin/bash`)
     - ✅ Has error handling (`set -e`)
     - ⚠️ No argument handling detected
-    - 💡 Consider adding more comments
+    - ✅ Has comments (6 lines)
+    - ✅ Variables are properly quoted
+
+   **Score: 4/5**
+
+📄 **log-analyzer.sh**
+   Path: `01-linux/log-analyzer.sh`
+   Lines: 51
+
+    - ❌ Missing shebang (`#!/bin/bash`)
+    - ✅ Has error handling (`set -e`)
+    - ⚠️ No argument handling detected
+    - ✅ Has comments (4 lines)
     - ✅ Variables are properly quoted
 
    **Score: 3/5**
 
-📄 **log-analyzer.sh**
-   Path: `01-linux/log-analyzer.sh`
-   Lines: 48
-
-    - ❌ Missing shebang (`#!/bin/bash`)
-    - ✅ Has error handling (`set -e`)
-    - ⚠️ No argument handling detected
-    - 💡 Consider adding more comments
-    - ✅ Variables are properly quoted
-
-   **Score: 2/5**
-
-📄 **log.sh**
-   Path: `01-linux/log.sh`
-   Lines: 37
-
-    - ❌ Missing shebang (`#!/bin/bash`)
-    - ❌ Missing `set -e` for error handling
-    - ⚠️ No argument handling detected
-    - 💡 Consider adding more comments
-    - ✅ Variables are properly quoted
-
-   **Score: 1/5**
-
-📄 **script.sh**
-   Path: `01-linux/script.sh`
-   Lines: 8
-
-    - ✅ Has shebang (`#!/bin/bash`)
-    - ✅ Has error handling (`set -e`)
-    - ⚠️ No argument handling detected
-    - 💡 Consider adding more comments
-    - 💡 Consider quoting variables to handle spaces
-
-   **Score: 2/5**
-
-### Topic Score: 21 / 35 (60%)
+### Topic Score: 19 / 25 (76%)
 
 ### Technical Checklist
 
