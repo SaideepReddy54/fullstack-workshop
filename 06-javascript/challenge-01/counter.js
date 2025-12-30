@@ -4,7 +4,7 @@ let step = 1;
 const countEl = document.getElementById('count');
 
 const updateUI = () => {
-  countEl.textContent = count;
+  countEl.textContent = `${count}`;
   countEl.style.color =
     count > 0 ? 'green' :
     count < 0 ? 'red' : 'black';
@@ -25,6 +25,8 @@ document.getElementById('reset').onclick = () => {
   updateUI();
 };
 
-document.querySelectorAll('[data-step]').forEach(btn => {
-  btn.onclick = () => step = Number(btn.dataset.step);
+document.querySelectorAll('[data-step]').forEach(button => {
+  button.onclick = () => {
+    step = Number(button.dataset.step);
+  };
 });

@@ -1,5 +1,4 @@
 function deepClone(value) {
-  
     if (value === null || typeof value !== 'object') {
         return value;
     }
@@ -16,7 +15,6 @@ function deepClone(value) {
         return clonedSet;
     }
 
-
     if (value instanceof Map) {
         const clonedMap = new Map();
         value.forEach((val, key) => {
@@ -29,7 +27,6 @@ function deepClone(value) {
         return value.map(item => deepClone(item));
     }
 
-  
     const clonedObj = {};
     for (let key in value) {
         if (value.hasOwnProperty(key)) {
@@ -38,7 +35,6 @@ function deepClone(value) {
     }
     return clonedObj;
 }
-
 
 const original = {
     name: 'John',
@@ -52,5 +48,5 @@ const cloned = deepClone(original);
 cloned.address.city = 'Boston';
 cloned.hobbies.push('swimming');
 
-console.log(original.address.city); 
-console.log(original.hobbies);       
+console.log(`Original city: ${original.address.city}`);
+console.log(`Original hobbies: ${original.hobbies.join(', ')}`);

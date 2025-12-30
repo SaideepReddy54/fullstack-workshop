@@ -6,33 +6,32 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
-function showError(input, message) {
+
+const showError = (input, message) => {
     const error = input.nextElementSibling;
-    error.textContent = message;
-    input.classList.remove("valid");
+    error.textContent = `${message}`; // ✅ template literal
     input.classList.add("invalid");
-}
+    input.classList.remove("valid");
+};
 
-function showSuccess(input) {
+const showSuccess = (input) => {
     const error = input.nextElementSibling;
-    error.textContent = "";
-    input.classList.remove("invalid");
+    error.textContent = ``; // ✅ template literal
     input.classList.add("valid");
-}
+    input.classList.remove("invalid");
+};
 
-function validateUsername() {
-    const value = username.value.trim();
+const validateUsername = () => {
     const regex = /^[a-zA-Z0-9]{3,15}$/;
-
-    if (!regex.test(value)) {
+    if (!regex.test(username.value.trim())) {
         showError(username, "3–15 chars, letters & numbers only");
         return false;
     }
     showSuccess(username);
     return true;
-}
+};
 
-function validateEmail() {
+const validateEmail = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regex.test(email.value.trim())) {
         showError(email, "Enter a valid email");
@@ -40,9 +39,9 @@ function validateEmail() {
     }
     showSuccess(email);
     return true;
-}
+};
 
-function validatePassword() {
+const validatePassword = () => {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
     if (!regex.test(password.value)) {
         showError(password, "8+ chars, 1 uppercase, 1 number, 1 special char");
@@ -50,17 +49,18 @@ function validatePassword() {
     }
     showSuccess(password);
     return true;
-}
+};
 
-function validateConfirmPassword() {
+const validateConfirmPassword = () => {
     if (confirmPassword.value !== password.value || confirmPassword.value === "") {
         showError(confirmPassword, "Passwords do not match");
         return false;
     }
     showSuccess(confirmPassword);
     return true;
-}
-function checkFormValidity() {
+};
+
+const checkFormValidity = () => {
     const isValid =
         validateUsername() &&
         validateEmail() &&
@@ -68,15 +68,9 @@ function checkFormValidity() {
         validateConfirmPassword();
 
     submitBtn.disabled = !isValid;
-}
-username.addEventListener("blur", validateUsername);
-email.addEventListener("blur", validateEmail);
-password.addEventListener("blur", validatePassword);
-confirmPassword.addEventListener("blur", validateConfirmPassword);
+};
 
-inputs.forEach(input =>
-    input.addEventListener("input", checkFormValidity)
-);
+inputs.forEach(input => input.addEventListener("input", checkFormValidity));
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();

@@ -16,10 +16,8 @@ function createShoppingCart() {
             const index = findItemIndex(product.id);
 
             if (index !== -1) {
-               
                 items[index].quantity += product.quantity;
             } else {
-              
                 items.push({ ...product });
             }
         },
@@ -39,7 +37,6 @@ function createShoppingCart() {
         },
 
         getItems() {
-          
             return items.map(item => ({ ...item }));
         },
 
@@ -51,7 +48,7 @@ function createShoppingCart() {
             }
 
             if (discount > 0) {
-                total = total - (total * discount / 100);
+                total -= (total * discount / 100);
             }
 
             return Number(total.toFixed(2));
@@ -82,6 +79,7 @@ function createShoppingCart() {
     };
 }
 
+// ---------- USAGE ----------
 
 const cart = createShoppingCart();
 
@@ -89,18 +87,17 @@ cart.addItem({ id: 1, name: 'Laptop', price: 999, quantity: 1 });
 cart.addItem({ id: 2, name: 'Mouse', price: 29, quantity: 2 });
 cart.addItem({ id: 1, name: 'Laptop', price: 999, quantity: 1 });
 
-console.log(cart.getItems());
-
+console.log(`Cart Items:`, cart.getItems());
 
 cart.updateQuantity(1, 3);
 cart.removeItem(2);
 
-console.log(cart.getTotal());    
-console.log(cart.getItemCount()); 
-console.log(cart.isEmpty());      
+console.log(`Total Amount: ₹${cart.getTotal()}`);
+console.log(`Total Items Count: ${cart.getItemCount()}`);
+console.log(`Is Cart Empty? ${cart.isEmpty()}`);
 
 cart.applyDiscount('SAVE10', 10);
-console.log(cart.getTotal());     
+console.log(`Total After Discount: ₹${cart.getTotal()}`);
 
 cart.clear();
-console.log(cart.isEmpty());      
+console.log(`Is Cart Empty After Clear? ${cart.isEmpty()}`);

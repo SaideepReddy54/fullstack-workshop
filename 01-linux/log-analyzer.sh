@@ -1,9 +1,12 @@
 
 #!/bin/bash
-set -e #Exit on error
-set -u #Exit on undefined Variable
-set -o pipefail #catch errors in pipes
 
+# Exit on error, undefined variable, or pipe failure
+set -e
+set -u
+set -o pipefail
+
+# Check if file path argument is provided
 LOG_FILE="/c/Users/saide/devTraining/sample-log.txt"
 
 # Check if file exists

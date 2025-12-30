@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Counter</title>
-<link rel="stylesheet" href="counter.css">
 
+  <link rel="stylesheet" href="counter.css">
   <script defer src="counter.js"></script>
-  <style>
-    body { font-family: Arial; text-align: center; }
-    #count { font-size: 48px; margin: 20px; }
-    button { padding: 10px 15px; margin: 5px; }
-  </style>
 </head>
 <body>
 
-<div id="count">0</div>
+  <main>
+    <section>
+      <div id="count">0</div>
 
-<button id="decrement">-</button>
-<button id="reset">Reset</button>
-<button id="increment">+</button>
+      <button id="decrement">-</button>
+      <button id="reset">Reset</button>
+      <button id="increment">+</button>
+    </section>
 
-<div>
-  Step:
-  <button data-step="1">1</button>
-  <button data-step="5">5</button>
-  <button data-step="10">10</button>
-</div>
+    <section>
+      <p>Step:</p>
+      <button data-step="1">1</button>
+      <button data-step="5">5</button>
+      <button data-step="10">10</button>
+    </section>
+  </main>
 
 </body>
 </html>

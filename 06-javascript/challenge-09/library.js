@@ -5,32 +5,23 @@ function createLibrary() {
 
     const BORROW_DAYS = 14;
 
-   
-    function findBook(isbn) {
-        for (let book of books) {
-            if (book.isbn === isbn) return book;
-        }
-        return null;
-    }
+    // Helper functions (arrow functions)
+    const findBook = (isbn) =>
+        books.find(book => book.isbn === isbn) || null;
 
-    function findMember(id) {
-        for (let member of members) {
-            if (member.id === id) return member;
-        }
-        return null;
-    }
+    const findMember = (id) =>
+        members.find(member => member.id === id) || null;
 
- 
     return {
-        addBook(book) {
+        addBook: (book) => {
             books.push({ ...book });
         },
 
-        addMember(member) {
+        addMember: (member) => {
             members.push({ ...member });
         },
 
-        borrowBook(memberId, isbn) {
+        borrowBook: (memberId, isbn) => {
             const book = findBook(isbn);
             const member = findMember(memberId);
 
@@ -49,77 +40,62 @@ function createLibrary() {
             return true;
         },
 
-        returnBook(memberId, isbn) {
+        returnBook: (memberId, isbn) => {
             const book = findBook(isbn);
             if (!book) return false;
 
-            for (let tx of transactions) {
-                if (
-                    tx.memberId === memberId &&
-                    tx.isbn === isbn &&
-                    tx.returnedAt === null
-                ) {
-                    tx.returnedAt = new Date();
-                    book.copies++;
-                    return true;
-                }
-            }
-            return false;
+            const tx = transactions.find(
+                t =>
+                    t.memberId === memberId &&
+                    t.isbn === isbn &&
+                    t.returnedAt === null
+            );
+
+            if (!tx) return false;
+
+            tx.returnedAt = new Date();
+            book.copies++;
+            return true;
         },
 
-        getAvailableCopies(isbn) {
-            const book = findBook(isbn);
-            return book ? book.copies : 0;
-        },
+        getAvailableCopies: (isbn) =>
+            findBook(isbn)?.copies ?? 0,
 
-        getMemberHistory(memberId) {
-            let history = [];
+        getMemberHistory: (memberId) =>
+            transactions
+                .filter(tx => tx.memberId === memberId)
+                .map(tx => ({ ...tx })),
 
-            for (let tx of transactions) {
-                if (tx.memberId === memberId) {
-                    history.push({ ...tx });
-                }
-            }
-            return history;
-        },
-
-        getOverdueBooks() {
-            let overdue = [];
+        getOverdueBooks: () => {
             const now = new Date();
 
-            for (let tx of transactions) {
-                if (tx.returnedAt === null) {
+            return transactions
+                .filter(tx => tx.returnedAt === null)
+                .filter(tx => {
                     const days =
                         (now - tx.borrowedAt) / (1000 * 60 * 60 * 24);
-
-                    if (days > BORROW_DAYS) {
-                        overdue.push({ ...tx });
-                    }
-                }
-            }
-            return overdue;
+                    return days > BORROW_DAYS;
+                })
+                .map(tx => ({ ...tx }));
         },
 
-        searchBooks(query) {
-            query = query.toLowerCase();
-            let results = [];
+        searchBooks: (query) => {
+            const q = query.toLowerCase();
 
-            for (let book of books) {
-                if (
-                    book.title.toLowerCase().includes(query) ||
-                    book.author.toLowerCase().includes(query)
-                ) {
-                    results.push({ ...book });
-                }
-            }
-            return results;
+            return books
+                .filter(
+                    book =>
+                        book.title.toLowerCase().includes(q) ||
+                        book.author.toLowerCase().includes(q)
+                )
+                .map(book => ({ ...book }));
         }
     };
 }
 
+/* ---------- USAGE ---------- */
 
 const library = createLibrary();
-
 
 library.addBook({ isbn: '123', title: '1984', author: 'Orwell', copies: 3 });
 library.addBook({ isbn: '456', title: 'Dune', author: 'Herbert', copies: 2 });
@@ -127,16 +103,13 @@ library.addBook({ isbn: '456', title: 'Dune', author: 'Herbert', copies: 2 });
 library.addMember({ id: 'M1', name: 'John', email: 'john@example.com' });
 library.addMember({ id: 'M2', name: 'Jane', email: 'jane@example.com' });
 
-
 library.borrowBook('M1', '123');
 library.borrowBook('M2', '123');
 
-console.log(library.getAvailableCopies('123')); 
+console.log(`Available copies of 1984: ${library.getAvailableCopies('123')}`);
 
 library.returnBook('M1', '123');
 
-console.log(library.getMemberHistory('M1'));
-
-
-console.log(library.getOverdueBooks()); 
-console.log(library.searchBooks('orwell')); 
+console.log(`Borrow history of M1:`, library.getMemberHistory('M1'));
+console.log(`Overdue books:`, library.getOverdueBooks());
+console.log(`Search result for "orwell":`, library.searchBooks('orwell'));

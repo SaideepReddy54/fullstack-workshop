@@ -1,35 +1,20 @@
+// Compose: right → left
+const compose = (...fns) => (value) =>
+  fns.reduceRight((result, fn) => fn(result), value);
 
-const compose = (...fns) => {
-    return function (value) {
-        let result = value;
+// Pipe: left → right
+const pipe = (...fns) => (value) =>
+  fns.reduce((result, fn) => fn(result), value);
 
-        for (let i = fns.length - 1; i >= 0; i--) {
-            result = fns[i](result);
-        }
-
-        return result;
-    };
-};
-
-const pipe = (...fns) => {
-    return function (value) {
-        let result = value;
-
-        for (let i = 0; i < fns.length; i++) {
-            result = fns[i](result);
-        }
-
-        return result;
-    };
-};
-
+// Example functions
 const addOne = x => x + 1;
 const double = x => x * 2;
 const square = x => x * x;
 
+// Using compose
 const composed = compose(addOne, double, square);
-console.log(composed(3));
+console.log(`Compose result: ${composed(3)}`);
 
-
+// Using pipe
 const piped = pipe(square, double, addOne);
-console.log(piped(3));
+console.log(`Pipe result: ${piped(3)}`);

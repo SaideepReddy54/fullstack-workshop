@@ -1,90 +1,65 @@
-function myMap(arr, callback) {
-    let result = [];
-    for (let i = 0; i < arr.length; i++) {
-        result[result.length] = callback(arr[i], i, arr);
-    }
+// Custom map
+const myMap = (arr, callback) => {
+    const result = [];
+    arr.forEach((item, index) => {
+        result.push(callback(item, index, arr));
+    });
     return result;
-}
+};
 
-function myFilter(arr, callback) {
-    let result = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (callback(arr[i], i, arr)) {
-            result[result.length] = arr[i];
+// Custom filter
+const myFilter = (arr, callback) => {
+    const result = [];
+    arr.forEach((item, index) => {
+        if (callback(item, index, arr)) {
+            result.push(item);
         }
-    }
+    });
     return result;
-}
+};
 
-function myReduce(arr, callback, initialValue) {
-    let accumulator = initialValue;
-    let startIndex = 0;
+// Custom reduce
+const myReduce = (arr, callback, initialValue) => {
+    const hasInitial = initialValue !== undefined;
+    return arr.reduce(
+        (acc, curr, index) =>
+            hasInitial || index > 0 ? callback(acc, curr, index, arr) : curr,
+        hasInitial ? initialValue : undefined
+    );
+};
 
-    if (accumulator === undefined) {
-        accumulator = arr[0];
-        startIndex = 1;
-    }
-
-    for (let i = startIndex; i < arr.length; i++) {
-        accumulator = callback(accumulator, arr[i], i, arr);
-    }
-    return accumulator;
-}
-
-function myFind(arr, callback) {
+// Custom find
+const myFind = (arr, callback) => {
     for (let i = 0; i < arr.length; i++) {
-        if (callback(arr[i], i, arr)) {
-            return arr[i];
-        }
+        if (callback(arr[i], i, arr)) return arr[i];
     }
     return undefined;
-}
+};
 
-function myEvery(arr, callback) {
-    for (let i = 0; i < arr.length; i++) {
-        if (!callback(arr[i], i, arr)) {
-            return false;
-        }
-    }
-    return true;
-}
+// Custom every
+const myEvery = (arr, callback) =>
+    arr.reduce((acc, curr, index) => acc && callback(curr, index, arr), true);
 
-function mySome(arr, callback) {
-    for (let i = 0; i < arr.length; i++) {
-        if (callback(arr[i], i, arr)) {
-            return true;
-        }
-    }
-    return false;
-}
+// Custom some
+const mySome = (arr, callback) =>
+    arr.reduce((acc, curr, index) => acc || callback(curr, index, arr), false);
 
-function myFlat(arr, depth = 1) {
-    let result = [];
+// Custom flat
+const myFlat = (arr, depth = 1) =>
+    depth > 0
+        ? arr.reduce(
+              (acc, curr) =>
+                  acc.concat(
+                      Array.isArray(curr) ? myFlat(curr, depth - 1) : curr
+                  ),
+              []
+          )
+        : arr.slice();
 
-    for (let i = 0; i < arr.length; i++) {
-        if (Array.isArray(arr[i]) && depth > 0) {
-            let flattened = myFlat(arr[i], depth - 1);
-            for (let j = 0; j < flattened.length; j++) {
-                result[result.length] = flattened[j];
-            }
-        } else {
-            result[result.length] = arr[i];
-        }
-    }
-    return result;
-}
+/* ---------- TESTING ---------- */
 
-
-console.log(myMap([1, 2, 3], x => x * 2));
-
-
-console.log(myFilter([1, 2, 3, 4], x => x > 2));
-
-
-console.log(myReduce([1, 2, 3], (a, b) => a + b, 0));
-
-
-console.log(myFind([1, 2, 3], x => x > 1));
-
-
-console.log(myFlat([1, [2, [3, [4]]]], 2));
+console.log(`myMap: ${JSON.stringify(myMap([1, 2, 3], x => x * 2))}`);
+console.log(`myFilter: ${JSON.stringify(myFilter([1, 2, 3, 4], x => x > 2))}`);
+console.log(`myReduce: ${myReduce([1, 2, 3], (a, b) => a + b, 0)}`);
+console.log(`myFind: ${myFind([1, 2, 3], x => x > 1)}`);
+console.log(`myFlat: ${JSON.stringify(myFlat([1, [2, [3, [4]]]], 2))}`);
