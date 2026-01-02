@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Exit on error, undefined variable, or pipe failure
@@ -7,45 +6,44 @@ set -u
 set -o pipefail
 
 # Check if file path argument is provided
-LOG_FILE="/c/Users/saide/devTraining/sample-log.txt"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <log-file-path>"
+    exit 1
+fi
+
+# Log file path from command-line argument
+path="$1"
 
 # Check if file exists
-if [ ! -f "$LOG_FILE" ]; then
-  echo "Error: File '$LOG_FILE' does not exist."
-  exit 1
-fi
+if [ -f "$path" ]; then
 
-TOTAL_LINES=$(wc -l < "$LOG_FILE")
+    echo "=== Log Analysis Report ==="
+    echo "File: $path"
+    echo "Total Entries: $(wc -l < "$path")"
+    echo
 
-INFO_COUNT=$(grep -c "INFO" "$LOG_FILE")
-WARNING_COUNT=$(grep -c "WARNING" "$LOG_FILE")
-ERROR_COUNT=$(grep -c "ERROR" "$LOG_FILE")
+    echo "Log Level Summary:"
+    printf "  ERROR: %d\n" "$(grep -ci 'error' "$path")"
+    printf "  WARN : %d\n" "$(grep -ci 'warning' "$path")"
+    printf "  INFO : %d\n" "$(grep -ci 'info' "$path")"
+    echo
 
-UNIQUE_IPS=$(grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' "$LOG_FILE" | sort -u)
+    echo "Top 5 Error Messages:"
+    grep -i 'error' "$path" \
+        | sed -E 's/^.*ERROR[: ]*//' \
+        | sort \
+        | uniq -c \
+        | sort -nr \
+        | head -5 \
+        | awk '{printf "  %d. %s (%d occurrences)\n", NR, substr($0, index($0,$2)), $1}'
+    echo
 
-echo "========== LOG ANALYSIS REPORT =========="
-echo "File: $LOG_FILE"
-echo "Total Lines: $TOTAL_LINES"
-echo "-----------------------------------------"
-echo "INFO: $INFO_COUNT"
-echo "WARNING: $WARNING_COUNT"
-echo "ERROR: $ERROR_COUNT"
-echo "-----------------------------------------"
-echo "Unique IP Addresses Found:"
+    echo "Unique IP Addresses:"
+    grep -oE '[0-9]{1,3}(\.[0-9]{1,3}){3}' "$path" \
+        | sort -u \
+        | awk '{print "  - " $0}'
 
-if [ -n "$UNIQUE_IPS" ]; then
-  while IFS= read -r ip; do
-    echo " - $ip"
-  done <<< "$UNIQUE_IPS"
 else
-  echo " (none)"
+    echo "File does not exist: $path"
+    exit 1
 fi
-
-echo "========================================="
-
-
-
-
-
-
-
