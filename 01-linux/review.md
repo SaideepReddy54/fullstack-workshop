@@ -1,13 +1,13 @@
 # Review: 01-linux
 
 **Exercise:**  Exercise: Log File Analyzer Script
-**Review Date:** 2026-01-02 14:00
+**Review Date:** 2026-01-02 16:52
 
 ---
 
 ## Status: ✅ Submitted
 
-**Files submitted:** 4
+**Files submitted:** 2
 
 ### Relevance Check
 
@@ -18,30 +18,6 @@ Relevance check not configured for this topic
 - ✅ Found: `log-analyzer.sh`
 
 ### Code Review
-
-📄 **file-organizer.sh**
-   Path: `01-linux/challenge-01/file-organizer.sh`
-   Lines: 47
-
-    - ❌ Missing shebang (`#!/bin/bash`)
-    - ✅ Has error handling (`set -e`)
-    - ⚠️ No argument handling detected
-    - ✅ Has comments (7 lines)
-    - ✅ Variables are properly quoted
-
-   **Score: 3/5**
-
-📄 **process-moniter.sh**
-   Path: `01-linux/challenge-02/process-moniter.sh`
-   Lines: 37
-
-    - ✅ Has shebang (`#!/bin/bash`)
-    - ✅ Has error handling (`set -e`)
-    - ⚠️ No argument handling detected
-    - ✅ Has comments (6 lines)
-    - ✅ Variables are properly quoted
-
-   **Score: 4/5**
 
 📄 **log-analyzer.sh**
    Path: `01-linux/log-analyzer.sh`
@@ -55,7 +31,7 @@ Relevance check not configured for this topic
 
    **Score: 5/5**
 
-### Topic Score: 17 / 20 (85%)
+### Topic Score: 10 / 10 (100%)
 
 ### Technical Checklist
 
@@ -71,27 +47,9 @@ Relevance check not configured for this topic
 
 ## Challenge
 
-**Status:** ✅ Submitted (1 files)
+**Status:** ⚠️ Not submitted
 
-### Challenge Relevance Check
-
-Relevance check not configured for this topic
-
-### Challenge Code Review
-
-📄 **file-organizer.sh**
-   Lines: 47
-
-    - ❌ Missing shebang (`#!/bin/bash`)
-    - ✅ Has error handling (`set -e`)
-    - ⚠️ No argument handling detected
-    - ✅ Has comments (7 lines)
-    - ✅ Variables are properly quoted
-
-   **Score: 3/5**
-
-### Challenge Score: 3 / 5 (60%)
-
+Submit to: `01-linux/challenges/` or `01-linux/challenge-01/`, `01-linux/challenge-02/`, etc.
 
 ---
 
