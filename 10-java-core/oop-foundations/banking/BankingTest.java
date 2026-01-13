@@ -15,16 +15,17 @@ public class BankingTest {
         bank.addAccount(fd);
 
         savings.deposit(500);
-        checking.withdraw(800); // uses overdraft
+        checking.withdraw(800);
+
+        System.out.println("Welcome to " + bank.getBankName());
 
         System.out.println("Total deposits: $" + bank.getTotalDeposits());
 
-        System.out.println("\nInterest for all accounts:");
+        System.out.println("\n--- Interest Details ---");
         for (Account acc : bank.getAllAccounts()) {
             System.out.println(
-                    acc.getHolderName() +
-                            " interest: $" +
-                            acc.calculateInterest());
+                    acc.getHolderName() + " interest: $" + acc.calculateInterest());
+
         }
     }
 }

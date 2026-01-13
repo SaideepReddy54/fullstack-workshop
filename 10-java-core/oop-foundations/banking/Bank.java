@@ -13,6 +13,10 @@ public class Bank {
         this.accounts = new ArrayList<>();
     }
 
+    public String getBankName() {
+        return bankName;
+    }
+
     public void addAccount(Account account) {
         accounts.add(account);
     }

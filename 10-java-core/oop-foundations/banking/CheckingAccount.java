@@ -11,10 +11,9 @@ public class CheckingAccount extends Account {
     @Override
     public void withdraw(double amount) {
         if (amount > balance + OVERDRAFT_LIMIT) {
-            throw new IllegalArgumentException(
-                    "Withdrawal exceeds overdraft limit");
+            throw new IllegalArgumentException("Withdrawal exceeds overdraft limit");
         }
-        balance -= amount;
+        balance -= amount; // can go negative
     }
 
     @Override
